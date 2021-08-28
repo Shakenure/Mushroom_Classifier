@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kmeans</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    
+    <style>
+        body{
+            background: #7c8ef5;
+
+        }
+        .mainPanel{
+            margin : 20px;
+        }
+    </style>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">Mushroom Classification: K Means Algorithm</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Back to main page</a></li>
+            </ul>
+        </div>
+    </nav>    
+    
+
+    <form action='/predictKM' method='GET' class="mainPanel">
+        <div class="panel panel-success">
+            <div class="panel-heading">Colour of Mushroom</div>
+            <div class="panel-body">
+                
+                <div class="form-group col-sm-2">
+                    <select name="attr1" class="form-control">
+                        
+                        <option value=1>CapColor</option>
+                        <option value=2>GillColor</option>
+                        <option value=3>StalkColorAboveRing</option>
+                        <option value=4>StalkColorBelowRing</option>
+                        <option value=5>VeilColor</option>               
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="attr2" class="form-control">
+                        
+                        <option value=6>CapSurface</option>
+                        <option value=7>StalkSurfaceAboveRing</option>
+                        <option value=8>StalkSurfaceBelowRing</option>
+                        <option value=9>Bruises</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="attr3" class="form-control">
+                        
+                        <option value=10>GillAttachment</option>
+                        <option value=11>GillSpacing</option>
+                        <option value=12>GillSize</option>
+                        <option value=13>StalkShape</option>
+                        <option value=14>StalkRoot</option>               
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    
+                    <select name="attr4" class="form-control">
+                        
+                        <option value=15>Odor</option>
+                        <option value=16>VeilType</option>
+                        <option value=17>RingNumber</option>
+                        <option value=18>RingType</option>
+                        <option value=19>Population</option>
+                        <option value=20>Habitat</option>               
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" align="center">
+            <input type="submit" class='btn btn-default' id="Submit" value="SUBMIT">
+        </div>
+    </form> 
+        
+    
+
+    
+    
+</body>
+</html>

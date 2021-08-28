@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>naiveBayes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    
+    <style>
+        body{
+            background: #7c8ef5;
+
+        }
+        .mainPanel{
+            margin : 20px;
+        }
+    </style>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">Mushroom Classification: Naive Bayes algorithm</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/trainNB">Train Model</a></li>
+                <li class="active"><a href="/">Back to main page</a></li>
+            </ul>
+        </div>
+    </nav>    
+    
+
+    <form action='predictNB' method='GET' class="mainPanel">
+        <div class="panel panel-success">
+            <div class="panel-heading">Colour of Mushroom</div>
+            <div class="panel-body">
+                <div class="form-group col-sm-2">
+                    <select name="CapColor" class="form-control">
+                        <option value="Select">Cap Color</option>
+                        <option value="buff">buff</option>
+                        <option value="cinnamon">cinnamon</option>
+                        <option value="red">red</option>
+                        <option value="gray">gray</option>
+                        <option value="brown">brown</option>
+                        <option value="pink">pink</option>
+                        <option value="green">green</option>
+                        <option value="purple">brown</option>
+                        <option value="white">pink</option>
+                        <option value="yellow">yellow</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="GillColor" class="form-control">
+                        <option value="Select">GillColor</option>
+                        <option value="buff">buff</option>
+                        <option value="red">red</option>
+                        <option value="gray">gray</option>
+                        <option value="chocolate">chocolate</option>
+                        <option value="black">black</option>
+                        <option value="brown">brown</option>
+                        <option value="orange">orange</option>
+                        <option value="pink">pink</option>
+                        <option value="chocolate">chocolate</option>
+                        <option value="green">green</option>
+                        <option value="purple">purple</option>
+                        <option value="white">white</option>
+                        <option value="yellow">yellow</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="StalkColorAboveRing" class="form-control">
+                        <option value="Select">StalkColorAboveRing</option>
+                        <option value="buff">buff</option>
+                        <option value="cinnamon">cinnamon</option>
+                        <option value="red">red</option>
+                        <option value="gray">gray</option>
+                        <option value="brown">brown</option>
+                        <option value="pink">pink</option>
+                        <option value="orange">orange</option>
+                        <option value="white">white</option>
+                        <option value="yellow">yellow</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="StalkColorBelowRing" class="form-control">
+                        <option value="Select">StalkColorBelowRing</option>
+                        <option value="buff">buff</option>
+                        <option value="cinnamon">cinnamon</option>
+                        <option value="red">red</option>
+                        <option value="gray">gray</option>
+                        <option value="brown">brown</option>
+                        <option value="pink">pink</option>
+                        <option value="orange">orange</option>
+                        <option value="white">white</option>
+                        <option value="yellow">yellow</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="VeilColor" class="form-control">
+                        <option value="Select">VeilColor</option>
+                        <option value="brown">brown</option>
+                        <option value="orange">orange</option>
+                        <option value="white">white</option>
+                        <option value="yellow">yellow</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="SporePrintColor" class="form-control">
+                        <option value="Select">SporePrintColor</option>
+                        <option value="buff">buff</option>
+                        <option value="chocolate">chocolate</option>
+                        <option value="black">black</option>
+                        <option value="brown">brown</option>
+                        <option value="orange">orange</option>
+                        <option value="green">green</option>
+                        <option value="purple">purple</option>
+                        <option value="white">white</option>
+                        <option value="yellow">yellow</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">Surface texture</div>
+            <div class="panel-body">
+                <div class="form-group col-sm-2">
+                    <select name="CapSurface" class="form-control">
+                        <option value="Select">Cap Surface</option>
+                        <option value="fibrous">fibrous</option>
+                        <option value="grooves">grooves</option>
+                        <option value="scaly">scaly</option>
+                        <option value="smooth">smooth</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="StalkSurfaceAboveRing" class="form-control">
+                        <option value="Select">StalkSurfaceAboveRing</option>
+                        <option value="fibrous">fibrous</option>
+                        <option value="silky">silky</option>
+                        <option value="smooth">smooth</option>
+                        <option value="scaly">scaly</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="StalkSurfaceBelowRing" class="form-control">
+                        <option value="Select">StalkSurfaceBelowRing</option>
+                        <option value="fibrous">fibrous</option>
+                        <option value="silky">silky</option>
+                        <option value="smooth">smooth</option>
+                        <option value="scaly">scaly</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="Bruises" class="form-control">
+                        <option value="Select">Bruises</option>
+                        <option value="no">no</option>
+                        <option value="yes">yes</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">Structure of mushroom</div>
+            <div class="panel-body">
+                <div class="form-group col-sm-2">
+                    <select name="GillAttachment" class="form-control">
+                        <option value="Select">Gill Attachment</option>
+                        <option value="attached">attached</option>
+                        <option value="free">free</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="GillSpacing" class="form-control">
+                        <option value="Select">Gill Spacing</option>
+                        <option value="close">close</option>
+                        <option value="crowded">crowded</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="GillSize" class="form-control">
+                        <option value="Select">Gill Size</option>
+                        <option value="broad">broad</option>
+                        <option value="narrow">narrow</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="CapShape" class="form-control">
+                        <option value="Select">Cap Shape</option>
+                        <option value="bell">bell</option>
+                        <option value="flat">flat</option>
+                        <option value="knobbed">knobbed</option>
+                        <option value="sunken">sunken</option>
+                        <option value="convex">convex</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="StalkShape" class="form-control">
+                        <option value="Select">StalkShape</option>
+                        <option value="enlarging">enlarging</option>
+                        <option value="tapering">tapering</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="StalkRoot" class="form-control">
+                        <option value="Select">StalkRoot</option>
+                        <option value="missing">missing</option>
+                        <option value="bulbous">bulbous</option>
+                        <option value="club">club</option>
+                        <option value="equal">equal</option>
+                        <option value="rooted">rooted</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-success">
+            <div class="panel-heading">Structure of mushroom</div>
+            <div class="panel-body">
+                <div class="form-group col-sm-2">
+                    <select name="Odor" class="form-control">
+                        <option value="Select">Odor</option>
+                        <option value="almond">almond</option>
+                        <option value="creosote">creosote</option>
+                        <option value="foul">foul</option>
+                        <option value="anise">anise</option>
+                        <option value="musty">musty</option>
+                        <option value="none">none</option>
+                        <option value="pungent">pungent</option>
+                        <option value="spicy">spicy</option>
+                        <option value="fishy">fishy</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="VeilType" class="form-control">
+                        <option value="Select">VeilType</option>
+                        <option value="partial">partial</option>
+                    </select>
+                </div>
+                
+                <div class="form-group col-sm-2">
+                    <select name="RingNumber" class="form-control">
+                        <option value="Select">RingNumber</option>
+                        <option value="none">none</option>
+                        <option value="one">one</option>
+                        <option value="two">two</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="RingType" class="form-control">
+                        <option value="Select">RingType</option>
+                        <option value="evanescent">evanescent</option>
+                        <option value="flaring">flaring</option>
+                        <option value="large">large</option>
+                        <option value="pendant">pendant</option>
+                        <option value="none">none</option>
+                    </select>
+                </div>
+                
+                <div class="form-group col-sm-2">
+                    <select name="Population" class="form-control">
+                        <option value="Select">Population</option>
+                        <option value="abundant">abundant</option>
+                        <option value="clustered">clustered</option>
+                        <option value="numerous">numerous</option>
+                        <option value="scattered">scattered</option>
+                        <option value="several">several</option>
+                        <option value="solitary">solitary</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <select name="Habitat" class="form-control">
+                        <option value="Select">Habitat</option>
+                        <option value="wood">wood</option>
+                        <option value="grasses">grasses</option>
+                        <option value="leaves">leaves</option>
+                        <option value="meadows">meadows</option>
+                        <option value="paths">paths</option>
+                        <option value="urban">urban</option>
+                        <option value="waste">waste</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="form-group" align="center">
+            <input type="submit" class='btn btn-default' id="Predict" value="PREDICT">
+
+        </div>
+    </form>
+    
+    
+</body>
+</html>

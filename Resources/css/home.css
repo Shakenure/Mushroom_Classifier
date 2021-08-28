@@ -1,0 +1,38 @@
+.button {
+  border-radius: 20px;
+  background-color: #e095e8;
+  border: none;
+  color: #3f0250;
+  text-align: center;
+  font-size: 40px;
+  padding: 50px;
+  width: 700px;
+  transition: all 1.5s;
+  cursor: pointer;
+  margin: 30px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 50px;
+}
+
+.button:hover span:after {
+  opacity: inherit;
+  right: 10;
+}
